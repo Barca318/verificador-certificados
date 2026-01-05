@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificación de Certificado</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            padding: 40px;
+            text-align: center;
+        }
+        .contenedor {
+            background: white;
+            max-width: 420px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.15);
+        }
+        h2 {
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 12px 22px;
+            font-size: 16px;
+            background: #004aad;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .datos {
+            margin-top: 25px;
+            display: none;
+            font-size: 18px;
+            text-align: left;
+        }
+        .linea {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="contenedor">
+    <h2>Verificación de Certificado</h2>
+    <p>Haga clic en el botón para visualizar los datos</p>
+
+    <button onclick="mostrarDatos()">Ver información</button>
+
+    <div class="datos" id="datos">
+        <div class="linea">
+            <strong>N° Certificado:</strong>
+            <span id="certificado"></span>
+        </div>
+        <div class="linea">
+            <strong>Placa del vehículo:</strong>
+            <span id="placa"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Leer datos desde la URL
+    const parametros = new URLSearchParams(window.location.search);
+    const cert = parametros.get("cert");
+    const placa = parametros.get("placa");
+
+    function mostrarDatos() {
+        document.getElementById("certificado").textContent = cert ?? "No disponible";
+        document.getElementById("placa").textContent = placa ?? "No disponible";
+        document.getElementById("datos").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
+
